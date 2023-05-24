@@ -52,9 +52,44 @@ class Channel:
         with open(filename, 'w') as file:
             json.dump(data, file)
 
-
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         print(
             json.dumps(self.youtube.channels().list(id=self.channel_id, part='snippet, statistics').execute(), indent=2,
                        ensure_ascii=False))
+
+    def __str__(self) -> str:
+        """Возвращает строковое представление канала в формате <название_канала> (<ссылка_на_канал>)"""
+        return f"{self.title} ({self.url})"
+
+    def __add__(self, other: 'Channel') -> int:
+        """Сложение двух каналов по количеству подписчиков"""
+        return self.subscriber_count + other.subscriber_count
+
+    def __sub__(self, other: 'Channel') -> int:
+        """Вычитание одного канала из другого по количеству подписчиков"""
+        return self.subscriber_count - other.subscriber_count
+
+    def   __sub__(self, other: 'Channel') -> int:
+        """Вычитание одного канала из другого по количеству подписчиков"""
+        return self.subscriber_count - other.subscriber_count
+
+    def __lt__(self, other: 'Channel') -> bool:
+        """Сравнение двух каналов: self < other"""
+        return self.subscriber_count < other.subscriber_count
+
+    def __le__(self, other: 'Channel') -> bool:
+        """Сравнение двух каналов: self <= other"""
+        return self.subscriber_count <= other.subscriber_count
+
+    def __gt__(self, other: 'Channel') -> bool:
+        """Сравнение двух каналов: self > other"""
+        return self.subscriber_count > other.subscriber_count
+
+    def __ge__(self, other: 'Channel') -> bool:
+        """Сравнение двух каналов: self >= other"""
+        return self.subscriber_count >= other.subscriber_count
+
+    def __eq__(self, other):
+        """Определяет, что текущий канал имеет равное количество подписчиков, как другой канал."""
+        return self.subscriber_count == other.subscriber_count
