@@ -1,6 +1,7 @@
 from src.channel import Channel
 import pytest
 
+
 def test_channel_info_fetching():
     channel_id = 'UC-OVMPlMA3-YCIeg4z5z23A'
     channel = Channel(channel_id)
@@ -13,6 +14,7 @@ def test_channel_info_fetching():
     assert channel.video_count is not None
     assert channel.view_count is not None
 
+
 def test_channel_to_json(tmpdir):
     channel_id = 'UC-OVMPlMA3-YCIeg4z5z23A'
     channel = Channel(channel_id)
@@ -22,12 +24,14 @@ def test_channel_to_json(tmpdir):
 
     assert filename.exists()
 
+
 def test_channel_str():
     channel_id = 'UC-OVMPlMA3-YCIeg4z5z23A'
     channel = Channel(channel_id)
 
     expected_str = 'MoscowPython (https://www.youtube.com/channel/UC-OVMPlMA3-YCIeg4z5z23A)'
     assert str(channel) == expected_str
+
 
 def test_channel_comparison():
     channel1 = Channel('UC-OVMPlMA3-YCIeg4z5z23A')
@@ -39,6 +43,7 @@ def test_channel_comparison():
     assert channel1 < channel2
     assert channel2 > channel1
     assert channel2 != channel1
+
 
 def test_channel_arithmetic_operations():
     channel1 = Channel('UC-OVMPlMA3-YCIeg4z5z23A')
@@ -52,7 +57,6 @@ def test_channel_arithmetic_operations():
 
     expected_diff2 = channel2.subscriber_count - channel1.subscriber_count
     assert (channel2 - channel1) == expected_diff2
-
 
 
 if __name__ == "__main__":
