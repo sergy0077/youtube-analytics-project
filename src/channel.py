@@ -93,3 +93,4 @@ class Channel:
     def __eq__(self, other):
         """Определяет, что текущий канал имеет равное количество подписчиков, как другой канал."""
         return self.subscriber_count == other.subscriber_count
+
