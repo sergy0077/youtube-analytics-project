@@ -1,5 +1,5 @@
 from googleapiclient.discovery import build
-
+import os
 
 class Video:
     def __init__(self, video_id):
@@ -17,11 +17,12 @@ class Video:
         return self.title
 
     def _get_video_data(self, video_id):
+        # Получение API-ключа из переменных окружения
+        api_key = os.getenv('YT_API_KEY')
+
         # Создание YouTube API клиента
         api_service_name = "youtube"
         api_version = "v3"
-        api_key = "AIzaSyDB2Wq-y0YPRgQRweiLZnxJ-bANuuq6nc8"  # Замените на ваш собственный API-ключ YouTube
-
         youtube = build(api_service_name, api_version, developerKey=api_key)
 
         # Запрос к YouTube API для получения данных о видео
@@ -51,11 +52,12 @@ class PLVideo(Video):
         self.title = playlist_data['title']
 
     def _get_playlist_data(self, playlist_id):
+        # Получение API-ключа из переменных окружения
+        api_key = os.getenv('YT_API_KEY')
+
         # Создание YouTube API клиента
         api_service_name = "youtube"
         api_version = "v3"
-        api_key = "AIzaSyDB2Wq-y0YPRgQRweiLZnxJ-bANuuq6nc8"  # Замените на ваш собственный API-ключ YouTube
-
         youtube = build(api_service_name, api_version, developerKey=api_key)
 
         # Запрос к YouTube API для получения данных о плейлисте
